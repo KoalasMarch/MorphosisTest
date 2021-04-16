@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @region.title %>
+</p>
+
+<p>
+  <strong>Country details:</strong>
+  <%= @region.country_details %>
+</p>
+
+<p>
+  <strong>Currency details:</strong>
+  <%= @region.currency_details %>
+</p>
+
+<p>
+  <strong>Tax details:</strong>
+  <%= @region.tax_details %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @region.store_id %>
+</p>
+
+<%= link_to 'Edit', edit_region_path(@region) %> |
+<%= link_to 'Back', regions_path %>

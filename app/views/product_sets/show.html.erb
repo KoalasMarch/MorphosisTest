@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @product_set.product_id %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @product_set.region_id %>
+</p>
+
+<%= link_to 'Edit', edit_product_set_path(@product_set) %> |
+<%= link_to 'Back', product_sets_path %>
