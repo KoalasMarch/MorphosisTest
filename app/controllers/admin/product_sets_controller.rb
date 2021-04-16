@@ -1,4 +1,4 @@
-class Admin::ProductSetsController < ApplicationController
+class ProductSetsController < ApplicationController
   before_action :set_product_set, only: %i[ show edit update destroy ]
 
   # GET /product_sets or /product_sets.json

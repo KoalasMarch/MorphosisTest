@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  resources :order_products
-  resources :orders
-  resources :stocks
-  resources :product_sets
-  resources :products
-  resources :regions
-  resources :stores
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+  scope module: :admin do
+    resources :stocks
+    resources :product_sets
+    resources :products
+    resources :regions
+    resources :stores
+    resources :users
+  end
+
+  scope module: :customer do
+    resources :order_products
+    resources :orders
+  end
 end
