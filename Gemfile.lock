@@ -168,6 +168,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    ruby_http_client (3.5.2)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -182,6 +183,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sendgrid-ruby (6.4.0)
+      ruby_http_client (~> 3.4)
     sidekiq (6.2.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -247,6 +250,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.4)
   sass-rails (>= 6)
   selenium-webdriver
+  sendgrid-ruby
   sidekiq
   spring
   spring-watcher-listen (~> 2.0.0)

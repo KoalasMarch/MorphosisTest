@@ -26,6 +26,8 @@
 #
 class Order < ApplicationRecord
   belongs_to :user
+  has_many :order_products
+  has_many :products, through: :order_products
 
   before_validation :calculate_price
 
@@ -39,5 +41,11 @@ class Order < ApplicationRecord
 
   def calculate_price 
     order_products.sum{ |p| p.product.price }
+  end
+
+  def create_order_producrs(product_ids)
+    product_ids.each do |product_id|
+      OrderProduct.create(order_id: id, product_id: product_id)
+    end
   end
 end

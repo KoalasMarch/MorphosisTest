@@ -22,6 +22,7 @@
 class Region < ApplicationRecord
   belongs_to :store
   has_many :product_sets
+  has_many :products, through: :product_sets
 
   validates :title, presence: true
   validates :currency_details, presence: true

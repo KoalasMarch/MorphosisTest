@@ -1,5 +1,5 @@
 class Admin::RegionsController < Admin::BaseController
-  before_action :set_region, only: %i[ show update destroy ]
+  before_action :set_region, only: %i[ show update destroy create_product_sets ]
 
   def index
     @regions = Region.all
@@ -26,6 +26,12 @@ class Admin::RegionsController < Admin::BaseController
     return render json: { errors: @region.errors.full_messages } unless @region.destroy
 
     render status: :no_content
+  end
+
+  def create_product_sets
+    @region.create_product_sets
+
+    render json: { region: @region, products: @region.product_sets.map{|ps| ps.product} }
   end
 
   private

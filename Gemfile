@@ -34,6 +34,7 @@ gem 'devise'
 gem 'aasm'
 gem 'jwt'
 gem 'bcrypt'
+gem 'sendgrid-ruby'
 
 
 gem 'sidekiq'

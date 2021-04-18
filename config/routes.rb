@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :stocks
     resources :products
     resources :regions do
-      resources :product_sets
+      member do
+        post :create_product_sets
+      end
     end
     resources :stores
     resources :users
