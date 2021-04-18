@@ -32,6 +32,7 @@ gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dab
 gem 'annotate'
 gem 'devise'
 gem 'aasm'
+gem 'jwt'
 
 
 gem 'sidekiq'
