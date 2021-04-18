@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
-  scope module: :admin do
+  namespace 'admin' do
     resources :stocks
-    resources :product_sets
     resources :products
-    resources :regions
+    resources :regions do
+      resources :product_sets
+    end
     resources :stores
     resources :users
   end
 
-  scope module: :customer do
+  namespace 'customer' do
     resources :order_products
     resources :orders
+    resources :stores
+    resources :users
   end
 end

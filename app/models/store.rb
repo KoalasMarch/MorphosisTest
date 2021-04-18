@@ -8,4 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Store < ApplicationRecord
+  has_one :region
 end

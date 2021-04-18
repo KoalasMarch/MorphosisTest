@@ -26,4 +26,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+
+  has_many :orders
+
+  enum role: {
+    admin: 'admin',
+    customer: 'customer'
+  }
+
+  def admin?
+    role == 'admin'
+  end
+
+  def customer?
+    role == 'customer'
+  end
 end
