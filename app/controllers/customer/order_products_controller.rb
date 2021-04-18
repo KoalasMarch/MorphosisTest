@@ -3,9 +3,12 @@ class Customer::OrderProductsController < ApplicationController
 
   def index
     @order_products = OrderProduct.all
+
+    render json: @order_products.as_json
   end
 
   def show
+    render json: @order_product.as_json
   end
 
   def create

@@ -3,9 +3,12 @@ class Admin::RegionsController < Admin::BaseController
 
   def index
     @regions = Region.all
+
+    render json: @regions.as_json
   end
 
   def show
+    render json: @region.as_json
   end
 
   def create

@@ -3,9 +3,12 @@ class Admin::StocksController < Admin::BaseController
 
   def index
     @stocks = Stock.all
+
+    render json: @stocks.as_json
   end
 
   def show
+    render json: @stock.as_json
   end
 
   def create

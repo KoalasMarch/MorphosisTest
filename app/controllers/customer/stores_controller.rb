@@ -3,9 +3,12 @@ class Customer::StoresController < ApplicationController
 
   def index
     @stores = Store.all
+
+    render json: @stroes.as_json
   end
 
   def show
+    render json: @store.as_json
   end
 
   private
