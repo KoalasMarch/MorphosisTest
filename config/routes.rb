@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions', registration: 'users/registrations' }
   namespace 'admin' do
     resources :products, only: %w[index show create update destroy] do
-      member do
-        resources :stocks, only: %w[create update]
-      end
+      resources :stocks, only: %w[create update]
     end
     resources :regions, only: %w[index show create update destroy] do
       member do
