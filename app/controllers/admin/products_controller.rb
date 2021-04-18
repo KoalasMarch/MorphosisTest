@@ -3,9 +3,13 @@ class Admin::ProductsController < Admin::BaseController
 
   def index
     @products = Product.all
+
+    render json: @products.as_json
   end
 
   def show
+    render json: @product.as_json
+
   end
 
   def create

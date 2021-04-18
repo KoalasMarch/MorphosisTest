@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: %i[ show update destroy ]
 
   def show
+    render json: { user: @user }
   end
 
   def update

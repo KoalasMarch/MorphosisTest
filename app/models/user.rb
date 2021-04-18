@@ -43,4 +43,8 @@ class User < ApplicationRecord
   def customer?
     role == 'customer'
   end
+
+  def generate_jwt
+    JWT.encode({id: id, email: email}, Rails.application.secrets.secret_key_base, 'HS256')
+  end
 end
