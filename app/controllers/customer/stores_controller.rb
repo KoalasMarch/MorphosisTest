@@ -4,11 +4,11 @@ class Customer::StoresController < ApplicationController
   def index
     @stores = Store.all
 
-    render json: @stroes.as_json
+    render json: @stores.as_json
   end
 
   def show
-    render json: @store.as_json
+    render json: { store: @store.as_json, products: @store.region.products } 
   end
 
   private

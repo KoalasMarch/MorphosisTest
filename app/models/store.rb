@@ -17,5 +17,5 @@
 #  fk_rails_...  (region_id => regions.id)
 #
 class Store < ApplicationRecord
-  has_one :region
+  belongs_to :region
 end
