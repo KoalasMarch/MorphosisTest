@@ -36,16 +36,27 @@ class Order < ApplicationRecord
   validates :province, presence: true
   validates :sub_district, presence: true
   validates :district, presence: true
-  validates :zip_code, presnece: true
+  validates :zip_code, presence: true
   validates :price, presence: true
 
   def calculate_price 
-    order_products.sum{ |p| p.product.price }
+    products.sum(&:price)
   end
 
-  def create_order_producrs(product_ids)
-    product_ids.each do |product_id|
-      OrderProduct.create(order_id: id, product_id: product_id)
+  def create_order_producrs(details)
+    results = []
+    details.each do |detail|
+      product = Product.find(product[:id])
+      if product.stock.stock_number >= product[:amount]
+        OrderProduct.create(order_id: id, product_id: product[:id], amount: product[:amount]) 
+        remain = product.stock.stock_number - product[:amount]
+        product.stock.update(stock_number: remain)
+        results << "#{product.title} was successfully added"
+      else
+        results << "#{product.title} out of stock"
+      end
     end
+
+    results
   end
 end

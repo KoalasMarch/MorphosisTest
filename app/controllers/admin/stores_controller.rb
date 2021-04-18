@@ -15,7 +15,7 @@ class Admin::StoresController < Admin::BaseController
     @store = Store.new(store_params)
     return render json: { errors: @store.errors.full_messages } unless @store.save
 
-    render status: :create
+    render status: :created
   end
 
   def update

@@ -15,23 +15,25 @@ class Admin::RegionsController < Admin::BaseController
     @region = Region.new(region_params)
     return render json: { errors: @region.errors.full_messages } unless @region.save
 
-    render status: :create
+    render status: :created
   end
 
   def update
     return render json: { errors: @region.errors.full_message } unless @region.update(region_params)
+
+    render json: @region.as_json
   end
 
   def destroy
     return render json: { errors: @region.errors.full_messages } unless @region.destroy
 
-    render status: :no_content
+    render json: { message: 'Region was successfully destroyed' }
   end
 
   def create_product_sets
-    @region.create_product_sets
+    @region.create_product_sets(params[product_ids])
 
-    render json: { region: @region, products: @region.product_sets.map{|ps| ps.product} }
+    render json: { region: @region, products: @region.products }
   end
 
   private

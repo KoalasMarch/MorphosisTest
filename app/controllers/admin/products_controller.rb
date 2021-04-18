@@ -14,9 +14,10 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
+    Stock.new(product: @product, stock_number: params[:stock_number]) if params[:stock_number].present?
     return render json: { errors: @product.errors.full_messages } unless @product.save
 
-    render status: :create
+    render status: :created
   end
 
   def update

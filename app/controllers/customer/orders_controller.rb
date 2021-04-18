@@ -13,12 +13,12 @@ class Customer::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.create_order_products(params[:order][:product_ids])
+    results = @order.create_order_products(params[:details])
+
     return render json: { errors: @order.errors.full_messages }, status: :unprocessable_entity unless @order.save
 
     PaymentJob.perform_async(order_id: @order.id)
-
-    render json: { order: @order, products: @order.products }, status: :create
+    render json: { order: @order, products: @order.products, results: results }, status: :created
   end
 
   def update
@@ -39,6 +39,6 @@ class Customer::OrdersController < ApplicationController
 
 
     def order_params
-      params.require(:order).permit(:first_name, :last_name, :address, :district, :sub_district, :province, :zip_code, :total_price, product_ids: [])
+      params.require(:order).permit(:first_name, :last_name, :address, :district, :sub_district, :province, :zip_code)
     end
 end

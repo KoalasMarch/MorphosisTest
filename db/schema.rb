@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_091926) do
+ActiveRecord::Schema.define(version: 2021_04_18_163502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_091926) do
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
     t.index ["order_id"], name: "index_order_products_on_order_id"
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end
@@ -63,10 +64,8 @@ ActiveRecord::Schema.define(version: 2021_04_16_091926) do
     t.text "country_details"
     t.text "currency_details"
     t.text "tax_details"
-    t.bigint "store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["store_id"], name: "index_regions_on_store_id"
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -105,6 +104,5 @@ ActiveRecord::Schema.define(version: 2021_04_16_091926) do
   add_foreign_key "orders", "users"
   add_foreign_key "product_sets", "products"
   add_foreign_key "product_sets", "regions"
-  add_foreign_key "regions", "stores"
   add_foreign_key "stocks", "products"
 end
