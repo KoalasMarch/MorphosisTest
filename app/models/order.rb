@@ -26,4 +26,18 @@
 #
 class Order < ApplicationRecord
   belongs_to :user
+
+  before_validation :calculate_price
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :province, presence: true
+  validates :sub_district, presence: true
+  validates :district, presence: true
+  validates :zip_code, presnece: true
+  validates :price, presence: true
+
+  def calculate_price 
+    order_products.sum{ |p| p.product.price }
+  end
 end

@@ -29,6 +29,8 @@ class User < ApplicationRecord
 
   has_many :orders
 
+  validates :role, presence: true
+
   enum role: {
     admin: 'admin',
     customer: 'customer'

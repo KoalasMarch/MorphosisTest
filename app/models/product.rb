@@ -15,4 +15,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :product_orders
   has_many :product_sets
   has_one :stock
+
+  validates :title, presence: true
+  validates :price, presence: true
 end
