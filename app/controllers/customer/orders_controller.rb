@@ -13,11 +13,13 @@ class Customer::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    results = @order.create_order_products(params[:details])
-
+    @order.user = current_user
     return render json: { errors: @order.errors.full_messages }, status: :unprocessable_entity unless @order.save
+    
+    results = @order.create_order_products(params[:details])
+    @order.update(total_price: @order.calculate_price)
+    PaymentJob.perform_now(order_id: @order.id)
 
-    PaymentJob.perform_async(order_id: @order.id)
     render json: { order: @order, products: @order.products, results: results }, status: :created
   end
 

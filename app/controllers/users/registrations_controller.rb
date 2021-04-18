@@ -11,10 +11,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    user = User.new(sign_up_params)
+    user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password], role: params[:role])
 
     if user.save
-      token = current_user.generate_jwt
+      token = user.generate_jwt
       render json: token.to_json
     else
       render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
