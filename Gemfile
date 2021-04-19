@@ -33,7 +33,6 @@ gem 'annotate'
 gem 'devise'
 gem 'aasm'
 gem 'jwt'
-gem 'bcrypt'
 gem 'sendgrid-ruby'
 
 
